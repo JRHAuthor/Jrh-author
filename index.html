@@ -1,474 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Official website of science-fiction author J.R.H., creator of the Continuity series and The Rubin Anomaly.">
-  <title>J.R.H. | Science Fiction Author</title>
-  <style>
-    :root {
-      --bg: #050910;
-      --panel: #0d1522;
-      --panel-2: #111d2d;
-      --text: #f3f6fa;
-      --muted: #a8b5c5;
-      --blue: #66b8ff;
-      --ice: #d8efff;
-      --gold: #e4bd73;
-      --line: rgba(255,255,255,.12);
-      --shadow: 0 22px 60px rgba(0,0,0,.42);
-    }
+:root {
+  --bg: #050914;
+  --panel: #0b1423;
+  --panel-soft: #101d30;
+  --text: #eef4fb;
+  --muted: #b9c5d4;
+  --blue: #3f9cff;
+  --blue-light: #8dc8ff;
+  --gold: #d5a84b;
+  --line: rgba(255,255,255,.12);
+  --shadow: 0 24px 70px rgba(0,0,0,.42);
+}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 82% 3%, rgba(40,119,177,.20), transparent 31rem),
-        radial-gradient(circle at 5% 30%, rgba(80,111,145,.13), transparent 27rem),
-        var(--bg);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.65;
-    }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Garamond, "EB Garamond", Georgia, serif;
+  line-height: 1.65;
+}
+img { display: block; width: 100%; }
+a { color: inherit; }
 
-    a { color: inherit; }
-    .wrap { width: min(1120px, calc(100% - 36px)); margin: auto; }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 0 6vw;
+  background: rgba(5,9,20,.86);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(16px);
+}
+.brand {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-decoration: none;
+}
+.main-nav { display: flex; gap: 1.8rem; }
+.main-nav a { text-decoration: none; color: var(--muted); font-size: 1.05rem; }
+.main-nav a:hover { color: var(--text); }
+.menu-button { display: none; }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: rgba(5,9,16,.78);
-      border-bottom: 1px solid var(--line);
-    }
+.hero {
+  min-height: 86vh;
+  position: relative;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(63,156,255,.2), transparent 30%),
+    linear-gradient(90deg, rgba(2,6,15,.98) 0%, rgba(2,6,15,.82) 48%, rgba(2,6,15,.35) 100%),
+    url("assets/continuity-road-to-the-rift-wrap.jpg") center 42% / cover no-repeat;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 160px;
+  background: linear-gradient(transparent, var(--bg));
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(760px, 88vw);
+  margin-left: 8vw;
+  padding: 7rem 0;
+}
+.eyebrow {
+  margin: 0 0 .9rem;
+  color: var(--blue-light);
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .86rem;
+  font-weight: 700;
+}
+h1, h2, h3 { line-height: 1.08; margin-top: 0; }
+h1 { font-size: clamp(3.1rem, 7vw, 6.7rem); max-width: 820px; margin-bottom: 1.3rem; }
+h2 { font-size: clamp(2.4rem, 5vw, 4.5rem); margin-bottom: 1rem; }
+h3 { font-size: 2rem; margin-bottom: .7rem; }
+.hero-copy { max-width: 690px; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.45rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
 
-    nav {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: .8rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+.button:hover { transform: translateY(-2px); }
+.button.primary { color: white; background: linear-gradient(135deg, #176fd0, #3f9cff); box-shadow: 0 10px 30px rgba(63,156,255,.24); }
+.button.secondary { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.05); }
 
-    .logo {
-      text-decoration: none;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.35rem;
-      letter-spacing: .16em;
-      font-weight: 700;
-    }
+.section { padding: 7rem 7vw; }
+.section-heading { max-width: 850px; margin-bottom: 3rem; }
+.section-heading.centre { text-align: centre; text-align: center; margin-inline: auto; }
+.featured-grid, .about-grid, .contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: clamp(2.5rem, 7vw, 6rem);
+  align-items: center;
+}
+.book-cover-frame, .portrait-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: #07101e;
+}
+.book-cover-frame img { aspect-ratio: 1.42 / 1; object-fit: cover; }
+.book-details { font-size: 1.17rem; color: var(--muted); }
+.book-label { color: var(--gold); text-transform: uppercase; letter-spacing: .14em; font-size: .82rem; font-weight: 700; }
+blockquote {
+  margin: 2rem 0;
+  padding: 1rem 0 1rem 1.4rem;
+  border-left: 3px solid var(--blue);
+  color: var(--text);
+  font-size: 1.35rem;
+  font-style: italic;
+}
 
-    .nav-links { display: flex; gap: 22px; align-items: center; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: .94rem;
-    }
-    .nav-links a:hover { color: white; }
+.dark-section { background: linear-gradient(180deg, #07111f, #050914); border-block: 1px solid var(--line); }
+.card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; max-width: 1100px; margin-inline: auto; }
+.book-card {
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(16,29,48,.96), rgba(7,17,31,.96));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.book-card img { aspect-ratio: 2 / 3; object-fit: cover; object-position: top; }
+.card-content { padding: 1.7rem; }
+.card-content p { color: var(--muted); }
+.status { display: inline-block; margin-top: .7rem; color: var(--blue-light); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 
-    .hero {
-      min-height: 76vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 95px 0 75px;
-      overflow: hidden;
-      position: relative;
-    }
+.about { background: radial-gradient(circle at 20% 50%, rgba(63,156,255,.09), transparent 28%); }
+.portrait-frame { max-width: 560px; border-radius: 3px; }
+.portrait-frame img { aspect-ratio: 4 / 3; object-fit: cover; object-position: center 35%; }
+.about-copy { font-size: 1.17rem; color: var(--muted); }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 470px;
-      height: 470px;
-      border-radius: 50%;
-      border: 1px solid rgba(122,199,255,.28);
-      box-shadow:
-        0 0 70px rgba(78,170,233,.16),
-        inset 0 0 60px rgba(78,170,233,.11);
-      transform: rotate(-17deg);
-    }
+.contact-section { background: #08111e; border-top: 1px solid var(--line); }
+.contact-grid { align-items: start; }
+.contact-intro p { color: var(--muted); font-size: 1.12rem; }
+.small-note { font-size: .95rem !important; }
+.contact-form {
+  display: grid;
+  gap: .7rem;
+  padding: 2rem;
+  border: 1px solid var(--line);
+  background: rgba(16,29,48,.78);
+  box-shadow: var(--shadow);
+}
+.contact-form label { font-weight: 700; }
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  margin-bottom: .7rem;
+  padding: .85rem 1rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 3px;
+  color: var(--text);
+  background: #07101d;
+  font: inherit;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+.hidden-field { position: absolute !important; left: -9999px !important; }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 650px;
-      height: 115px;
-      border: 1px solid rgba(255,255,255,.17);
-      border-radius: 50%;
-      transform: rotate(-14deg);
-      filter: blur(.2px);
-    }
+.site-footer {
+  padding: 2.5rem 7vw;
+  text-align: center;
+  color: #93a2b5;
+  border-top: 1px solid var(--line);
+  background: #030711;
+  font-size: .95rem;
+}
+.site-footer p { margin: .3rem 0; }
 
-    .hero-content { max-width: 840px; position: relative; z-index: 2; }
-    .eyebrow {
-      color: var(--blue);
-      font-weight: 700;
-      letter-spacing: .23em;
-      text-transform: uppercase;
-      font-size: .78rem;
-    }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
 
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.12; }
-    h1 {
-      margin: 14px 0 20px;
-      font-size: clamp(3.8rem, 11vw, 7.9rem);
-      letter-spacing: .08em;
-    }
-    .hero h2 {
-      margin: 0 0 18px;
-      font-size: clamp(1.35rem, 4vw, 2.15rem);
-      color: var(--ice);
-      font-weight: 400;
-    }
-    .hero p {
-      max-width: 670px;
-      margin: 0 auto 34px;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
+@media (max-width: 850px) {
+  .menu-button {
+    display: block;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: .55rem .8rem;
+    font: inherit;
+  }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: #07101d;
+    border-bottom: 1px solid var(--line);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 1rem 6vw; border-top: 1px solid var(--line); }
+  .hero { min-height: 78vh; background-position: 64% center; }
+  .hero-content { margin-left: 6vw; }
+  .section { padding: 5rem 6vw; }
+  .featured-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+  .book-cover-frame img { aspect-ratio: auto; }
+}
 
-    .buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .button {
-      display: inline-block;
-      padding: 13px 21px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid var(--line);
-      transition: .2s ease;
-    }
-    .button.primary { background: var(--blue); color: #04101d; border-color: transparent; }
-    .button.secondary { background: rgba(255,255,255,.04); }
-    .button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
 
-    section { padding: 92px 0; }
-    .section-heading { max-width: 720px; margin-bottom: 38px; }
-    .section-heading h2 { font-size: clamp(2.2rem, 6vw, 3.5rem); margin: 8px 0 12px; }
-    .section-heading p { color: var(--muted); margin: 0; }
-
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
-
-    .book-card {
-      background: linear-gradient(145deg, rgba(17,29,45,.95), rgba(9,16,27,.96));
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cover {
-      min-height: 430px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 32px 22px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .cover::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 50% 42%, transparent 0 42px, rgba(118,197,255,.36) 47px, transparent 66px),
-        radial-gradient(circle at 50% 42%, #000 0 34px, transparent 35px),
-        linear-gradient(18deg, transparent 43%, rgba(237,248,255,.25) 47%, transparent 52%);
-      transform: rotate(-8deg);
-    }
-
-    .cover.ice {
-      background: linear-gradient(180deg, #16283b 0%, #07101a 50%, #182735 100%);
-    }
-    .cover.rift {
-      background:
-        linear-gradient(165deg, transparent 35%, rgba(26,73,105,.68) 36% 48%, transparent 49%),
-        linear-gradient(180deg, #152231, #05090e 64%, #17242e);
-    }
-    .cover.rubin {
-      background:
-        radial-gradient(circle at 62% 49%, #000 0 45px, rgba(185,225,255,.4) 47px, transparent 74px),
-        linear-gradient(145deg, #0d131c, #030406 70%);
-    }
-
-    .cover-text { position: relative; z-index: 2; text-shadow: 0 3px 20px #000; }
-    .cover small { letter-spacing: .25em; text-transform: uppercase; }
-    .cover h3 { font-size: 2.2rem; margin: 10px 0 8px; text-transform: uppercase; }
-    .cover .author { margin-top: 80px; letter-spacing: .2em; font-family: Georgia, serif; }
-
-    .book-info { padding: 26px; display: flex; flex-direction: column; flex: 1; }
-    .book-info h3 { font-size: 1.65rem; margin: 0 0 7px; }
-    .status { color: var(--gold); font-weight: bold; font-size: .86rem; text-transform: uppercase; letter-spacing: .12em; }
-    .book-info p { color: var(--muted); flex: 1; }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 38px;
-      align-items: stretch;
-    }
-    .quote-card, .about-copy, .news-card, .contact-card {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(14,23,36,.75);
-      box-shadow: var(--shadow);
-    }
-    .quote-card {
-      padding: 42px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background:
-        linear-gradient(rgba(7,12,19,.70), rgba(7,12,19,.90)),
-        radial-gradient(circle at top right, rgba(78,170,233,.35), transparent 60%);
-    }
-    .quote-card blockquote {
-      margin: 0;
-      font-family: Georgia, serif;
-      font-size: clamp(1.65rem, 4vw, 2.45rem);
-      line-height: 1.25;
-    }
-    .quote-card span { margin-top: 24px; color: var(--blue); font-weight: bold; }
-    .about-copy { padding: 38px; }
-    .about-copy h2 { font-size: 2.5rem; margin-top: 0; }
-    .about-copy p { color: var(--muted); }
-
-    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .news-card { padding: 28px; }
-    .news-card time { color: var(--blue); font-weight: bold; font-size: .84rem; letter-spacing: .1em; text-transform: uppercase; }
-    .news-card h3 { font-size: 1.35rem; margin: 10px 0; }
-    .news-card p { color: var(--muted); margin-bottom: 0; }
-
-    .contact-card {
-      padding: 48px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(72,154,211,.22), transparent 55%),
-        rgba(14,23,36,.82);
-    }
-    .contact-card h2 { font-size: 2.75rem; margin: 0 0 12px; }
-    .contact-card p { color: var(--muted); max-width: 650px; margin: 0 auto 28px; }
-
-    footer {
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      text-align: center;
-      padding: 30px 0;
-      font-size: .9rem;
-    }
-
-    @media (max-width: 900px) {
-      .books-grid, .news-grid { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 650px) {
-      .nav-links { display: none; }
-      .hero { min-height: 70vh; padding-top: 78px; }
-      .hero::before { width: 310px; height: 310px; }
-      .hero::after { width: 390px; }
-      section { padding: 68px 0; }
-      .books-grid, .news-grid { grid-template-columns: 1fr; }
-      .cover { min-height: 390px; }
-      .contact-card, .about-copy, .quote-card { padding: 30px 24px; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <nav class="wrap">
-      <a class="logo" href="#home">J.R.H.</a>
-      <div class="nav-links">
-        <a href="#books">Books</a>
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-content wrap">
-        <div class="eyebrow">Science Fiction Author</div>
-        <h1>J.R.H.</h1>
-        <h2>Stories of survival, humanity and the unknown.</h2>
-        <p>
-          Explore frozen worlds, distant futures and mysteries waiting in the darkness
-          beyond the stars.
-        </p>
-        <div class="buttons">
-          <a class="button primary" href="#books">Explore the books</a>
-          <a class="button secondary" href="#about">Meet the author</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="books">
-      <div class="wrap">
-        <div class="section-heading">
-          <div class="eyebrow">The stories</div>
-          <h2>Books by J.R.H.</h2>
-          <p>Connected science-fiction stories about endurance, sacrifice and what it means to preserve humanity.</p>
-        </div>
-
-        <div class="books-grid">
-          <article class="book-card">
-            <div class="cover ice">
-              <div class="cover-text">
-                <small>Continuity · Book One</small>
-                <h3>A Road<br>to the Rift</h3>
-                <div class="author">J.R.H.</div>
-              </div>
-            </div>
-            <div class="book-info">
-              <div class="status">Available now</div>
-              <h3>Continuity: A Road to the Rift</h3>
-              <p>
-                Sixteen years after the world freezes, one family begins a desperate journey
-                across a shattered civilisation towards humanity's greatest remaining refuge.
-              </p>
-              <!-- Replace # with your exact Amazon book link -->
-              <a <a class="button primary amazon-link" href="https://amzn.eu/d/0ifAVlUx" target="_blank" rel="noopener noreferrer">
-    Buy on Amazon
-</a>
-            </div>
-          </article>
-
-          <article class="book-card">
-            <div class="cover rift">
-              <div class="cover-text">
-                <small>Continuity · Book Two</small>
-                <h3>Beyond<br>the Rift</h3>
-                <div class="author">J.R.H.</div>
-              </div>
-            </div>
-            <div class="book-info">
-              <div class="status">Coming soon</div>
-              <h3>Beyond the Rift</h3>
-              <p>
-                The world remains frozen. Hope survives inside the remaining hubs, but humanity's
-                future will depend on whether they can stand together.
-              </p>
-              <a class="button secondary" href="#news">Latest updates</a>
-            </div>
-          </article>
-
-          <article class="book-card">
-            <div class="cover rubin">
-              <div class="cover-text">
-                <small>The Rubin Anomaly · Book One</small>
-                <h3>The<br>Distortion</h3>
-                <div class="author">J.R.H.</div>
-              </div>
-            </div>
-            <div class="book-info">
-              <div class="status">In development</div>
-              <h3>The Rubin Anomaly: The Distortion</h3>
-              <p>
-                A deep-space telescope records something impossible in the Galactic Halo.
-                It is not an instrument fault—and it may already know humanity exists.
-              </p>
-              <a class="button secondary" href="#news">Follow its progress</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap about-grid">
-        <div class="quote-card">
-          <blockquote>“Limitations are the ones you set yourself.”</blockquote>
-          <span>— The belief behind the books</span>
-        </div>
-        <div class="about-copy">
-          <div class="eyebrow">Behind the stories</div>
-          <h2>About J.R.H.</h2>
-          <p>
-            J.R.H. is a British science-fiction author whose stories explore survival,
-            family, moral choice and humanity's place in the universe.
-          </p>
-          <p>
-            Born with four learning disabilities, he spent years believing that writing and
-            publishing a novel was beyond him. Becoming a father changed that. Inspired by his
-            daughter, his fiancée and his family, he chose to prove that limitations do not have
-            to define what a person can achieve.
-          </p>
-          <p>
-            His debut novel, <em>Continuity: A Road to the Rift</em>, is the opening chapter in
-            an expanding collection of ambitious, connected science-fiction stories.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
-      <div class="wrap">
-        <div class="section-heading">
-          <div class="eyebrow">From the writing desk</div>
-          <h2>Latest news</h2>
-          <p>The Rubin Anomaly: The Distortion is coming very soon.</p>
-        </div>
-        <div class="news-grid">
-          <article class="news-card">
-            <time>July 2026</time>
-            <h3>The journey has begun</h3>
-            <p><em>Continuity: A Road to the Rift</em> is now available.</p>
-          </article>
-          <article class="news-card">
-            <time>In progress</time>
-            <h3>Beyond the Rift</h3>
-            <p>The second Continuity novel will take readers deeper into humanity's frozen future.</p>
-          </article>
-          <article class="news-card">
-            <time>In development</time>
-            <h3>A new anomaly</h3>
-            <p>Work continues on <em>The Rubin Anomaly: The Distortion</em>, a separate cosmic-horror series.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="contact-card">
-          <div class="eyebrow">Keep in touch</div>
-          <h2>Join the journey</h2>
-          <p>
-            For book news, release announcements and enquiries, use the contact button below "joseph.holdsworth60@gmail.com"
-          
-          </p>
-          <!-- Replace author@example.com with your real author email -->
-          <a class="button primary" href="mailto:author@example.com">Email J.R.H.</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">© 2026 J.R.H. All rights reserved.</div>
-  </footer>
-
-  <script>
-    document.querySelectorAll('[data-placeholder="true"]').forEach(link => {
-      link.addEventListener('click', event => {
-        if (link.getAttribute('href') === '#') {
-          event.preventDefault();
-          alert('Add your Amazon book link to this button before publishing the website.');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
